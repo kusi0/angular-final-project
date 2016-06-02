@@ -2,15 +2,10 @@ export default class ToDoController {
   
   constructor(LoginService) { 
     this.LoginService = LoginService;
-    console.log(this.LoginService);
+    this.listOfTask = [];
   }
   
-  getName(){
-     console.log(this.LoginService);
-    return this.LoginService.name;
-    
+  addTask(){
+    this.listOfTask.push(this.taskName);
   }
-  
-
-  
 }
