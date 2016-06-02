@@ -1,0 +1,16 @@
+<table st-table="rowCollection" class="table table-striped">
+	<thead>
+	<tr>
+		<th>Task</th>
+		<th>Owner</th>
+		<th>Status</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="task in todo.items">
+		<td>{{task.desc}}</td>
+		<td>{{task.owner}}</td>
+		<td>{{task.status}}</td>
+	</tr>
+	</tbody>
+</table>
