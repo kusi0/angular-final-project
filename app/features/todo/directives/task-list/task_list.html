@@ -5,10 +5,15 @@
 		<th>
             <select st-search="owner" ng-model="searchVariable.owner" >
                 <option value="">All</option>
-                <option ng-repeat="filtrOwner in todo.items | unique:'owner'" value="{{filtrOwner.owner}}">{{filtrOwner.owner}}</option>
+                <option ng-repeat="filtr in todo.items | unique:'owner'" value="{{filtr.owner}}">{{filtr.owner}}</option>
             </select>
 		</th>
-		<th>Status</th>
+		<th>
+            <select st-search="status" ng-model="searchVariable.status" >
+                <option value="">All</option>
+                <option ng-repeat="filtr in todo.items | unique:'status'" value="{{filtr.status}}">{{filtr.status}}</option>
+            </select>
+		</th>
 	</tr>
 	</thead>
 	<tbody>
