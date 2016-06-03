@@ -4,13 +4,8 @@ export default class ToDoController {
   constructor(LoginService, $firebaseArray) { 
     this.LoginService = LoginService;
     
-    var ref  = new Firebase("https://angular-project-1826a.firebaseio.com/");
-    this.items = $firebaseArray(ref);
-    this.displayData = [].concat(this.items);
-    
-    
-    this.filtrOwner = LoginService.name;
-    this.filtr();
+    this.ref  = new Firebase("https://angular-project-1826a.firebaseio.com/");
+    this.items = $firebaseArray(this.ref);
   }
   
   addTask(){
@@ -27,11 +22,20 @@ export default class ToDoController {
      this.items.$remove(item);
   }
   
-  filtr(){
+  updateTask(task){
     
-   
-    
-    console.log(this.displayData);
+    if(task.owner == this.LoginService.name)
+    {
+      var taskToUpdate = new Firebase("https://angular-project-1826a.firebaseio.com/"+task.$id);
+      taskToUpdate.update({ status: this.getNewStatus(task.status)});
+    }
+  }
+  
+  getNewStatus(status){
+    if(status == 'done')
+      return 'active';
+    else
+      return 'done';
   }
   
 }
