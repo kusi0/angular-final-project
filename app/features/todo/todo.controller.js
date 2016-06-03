@@ -8,21 +8,16 @@ export default class ToDoController {
   }
   
   addTask(){
-    
-   // this.task.name = this.taskName;
-   // this.task.status = "active";
-   // this.task.owner = this.LoginService.name;
-    
-  //  this.listOfTask.push(this.task);
+      this.items.$add({
+          desc: this.taskName, 
+          owner: this.LoginService.name,
+          status: "active"
+          
+      });
+      this.taskName = null;
+  }
   
-  
-  this.items.$add({
-      desc: this.taskName, 
-      owner: this.LoginService.name,
-      status: "active"
-      
-  });
-  console.log(this.listOfTask);
- //   console.log(myData);
+  removeTask(item){
+     this.items.$remove(item);
   }
 }

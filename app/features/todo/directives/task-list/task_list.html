@@ -2,7 +2,7 @@
 	<thead>
 	<tr>
 		<th>Task</th>
-		<th>Owner</th>
+		<th>OWner</th>
 		<th>Status</th>
 	</tr>
 	</thead>
@@ -11,6 +11,11 @@
 		<td>{{task.desc}}</td>
 		<td>{{task.owner}}</td>
 		<td>{{task.status}}</td>
+		<td>
+		    <button type="button" ng-click="todo.removeTask(task)" class="btn btn-sm btn-danger" ng-if="task.owner == todo.LoginService.name">
+			    <i class="glyphicon glyphicon-remove-circle "></i>
+		    </button>
+		</td>
 	</tr>
 	</tbody>
 </table>
