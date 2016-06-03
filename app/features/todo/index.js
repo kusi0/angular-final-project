@@ -1,6 +1,6 @@
 import angular from 'angular';
 import uirouter from 'angular-ui-router';
-
+import angularFilter from 'angular-filter'
 
 import routing from './todo.routes';
 
@@ -13,7 +13,7 @@ import angularFire from 'angularfire';
 import firebase from 'firebase';
 
 
-export default angular.module('app.todo', [uirouter,  angularFire])
+export default angular.module('app.todo', [uirouter, 'angular.filter', angularFire])
   .config(routing)
   .controller('ToDoController',ToDoController)
   .directive('taskInput', taskInput)
