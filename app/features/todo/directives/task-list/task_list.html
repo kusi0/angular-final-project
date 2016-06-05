@@ -1,27 +1,35 @@
 <table st-table="rowCollection" class="table table-striped table-hover">
 	<thead>
 	<tr>
-		<th>Task</th>
-		<th>
+		<th class="col-md-5">Task</th>
+		<th class="col-md-5">
             <select st-search="owner" ng-model="searchVariable.owner" >
                 <option value="">All</option>
                 <option ng-repeat="filtr in todo.items | unique:'owner'" value="{{filtr.owner}}">{{filtr.owner}}</option>
             </select>
 		</th>
-		<th>
+		<th class="col-md-1">
             <select st-search="status" ng-model="searchVariable.status" >
                 <option value="">All</option>
                 <option ng-repeat="filtr in todo.items | unique:'status'" value="{{filtr.status}}">{{filtr.status}}</option>
             </select>
 		</th>
+		<th class="col-md-1">Remove</th>
 	</tr>
 	</thead>
 	<tbody>
-	<tr ng-repeat="task in todo.items | filter:searchVariable" ng-click="todo.updateTask(task)">
-		<td>{{task.desc}}</td>
-		<td>{{task.owner}}</td>
-		<td>{{task.status}}</td>
-		<td>
+	<tr class = "{{todo.getClass(task)}}" ng-repeat="task in todo.items | filter:searchVariable" ng-click="todo.updateTask(task)">
+		<td class="col-md-5">
+			<div class="btn-group" data-toggle="buttons">
+				<label>
+					<span class="glyphicon glyphicon-ok" style="opacity: {{todo.getOpacity(task)}};"></span>
+				</label>
+			</div>
+			{{task.desc}}
+		</td>
+		<td class="col-md-5">{{task.owner}}</td>
+		<td class="col-md-1">{{task.status}}</td>
+		<td class="col-md-1">
 		    <button type="button" ng-click="todo.removeTask(task)" class="btn btn-sm btn-danger" ng-if="task.owner == todo.LoginService.name">
 			    <i class="glyphicon glyphicon-remove-circle "></i>
 		    </button>
@@ -29,3 +37,5 @@
 	</tr>
 	</tbody>
 </table>
+
+

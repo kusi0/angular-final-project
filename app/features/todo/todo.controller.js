@@ -38,4 +38,18 @@ export default class ToDoController {
       return 'done';
   }
   
+  getOpacity(task){
+    if(task.status == 'done')
+      return 1;
+    else
+      return 0;
+  }
+  
+  getClass(task){
+    if(task.status == 'done')
+      return "success";
+    else
+      return "";
+  }
+  
 }
