@@ -6,6 +6,10 @@ export default class ToDoController {
     
     this.ref  = new Firebase("https://angular-project-1826a.firebaseio.com/");
     this.items = $firebaseArray(this.ref);
+    let that = this;
+    this.items.$loaded().then(function(items) {
+      that.updateStats()
+    });
   }
   
   addTask(){
@@ -16,10 +20,20 @@ export default class ToDoController {
           
       });
       this.taskName = null;
+      this.updateStats();
+      
+      let that = this;
+      this.items.$loaded().then(function(items) {
+        that.updateStats()
+      });
   }
   
   removeTask(item){
      this.items.$remove(item);
+      let that = this;
+      this.items.$loaded().then(function(items) {
+        that.updateStats()
+      });
   }
   
   updateTask(task){
@@ -29,6 +43,10 @@ export default class ToDoController {
       var taskToUpdate = new Firebase("https://angular-project-1826a.firebaseio.com/"+task.$id);
       taskToUpdate.update({ status: this.getNewStatus(task.status)});
     }
+      let that = this;
+      this.items.$loaded().then(function(items) {
+        that.updateStats()
+      });
   }
   
   getNewStatus(status){
@@ -50,6 +68,30 @@ export default class ToDoController {
       return "success";
     else
       return "";
+  }
+  
+  updateStats(){
+    
+    this.doneTask = 0;
+    this.activeTask = 0;
+    this.yourTask = 0;
+    for(var i=0 ; i<this.items.length; i++)
+    {
+      
+      if( this.items[i].status == 'done' )
+        this.doneTask++;
+      
+      if( this.items[i].status == 'active' )
+        this.activeTask++;
+
+      if( this.items[i].owner == this.LoginService.name )
+        this.yourTask++;     
+      
+    }
+  }
+  
+  getPrcnt(number){
+      return (100 * number / this.items.length)+"%";
   }
   
 }

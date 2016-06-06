@@ -10,7 +10,7 @@ import ToDoController from './todo.controller';
 
 import taskInput from './directives/task-input';
 import taskList from './directives/task-list';
-
+import statsList from './directives/stats-list';
 
 
 export default angular.module('app.todo', [uirouter, 'angular.filter', angularFire])
@@ -18,4 +18,5 @@ export default angular.module('app.todo', [uirouter, 'angular.filter', angularFi
   .controller('ToDoController',ToDoController)
   .directive('taskInput', taskInput)
   .directive('taskList', taskList)
+  .directive('statsList', statsList)
   .name;

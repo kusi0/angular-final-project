@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-4">
+        <label>Your task in system</label><span class="pull-right strong">{{todo.yourTask}}/{{todo.items.length}}</span>
+        <div class="progress progress-success">
+            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.yourTask)}};"></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label>Task active</label><span class="pull-right strong">{{todo.activeTask}}/{{todo.items.length}}</span>
+        <div class="progress progress-success">
+            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.activeTask)}};"></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label>Task done</label><span class="pull-right strong">{{todo.doneTask}}/{{todo.items.length}}</span>
+        <div class="progress progress-success">
+            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.doneTask)}};"></div>
+        </div>
+    </div>
+</div>
