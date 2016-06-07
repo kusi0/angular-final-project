@@ -6,9 +6,11 @@ export default class ToDoController {
     
     this.ref  = new Firebase("https://angular-project-1826a.firebaseio.com/");
     this.items = $firebaseArray(this.ref);
+    this.buttonText = "All Tasks";
     let that = this;
     this.items.$loaded().then(function(items) {
       that.updateStats()
+      that.statisLength = that.items.length;
     });
   }
   
@@ -24,7 +26,8 @@ export default class ToDoController {
       
       let that = this;
       this.items.$loaded().then(function(items) {
-        that.updateStats()
+        that.updateStats();
+        that.statisLength++;
       });
   }
   
@@ -32,8 +35,10 @@ export default class ToDoController {
      this.items.$remove(item);
       let that = this;
       this.items.$loaded().then(function(items) {
-        that.updateStats()
+        that.updateStats();
+        that.statisLength--;
       });
+      
   }
   
   updateTask(task){
@@ -46,6 +51,7 @@ export default class ToDoController {
       let that = this;
       this.items.$loaded().then(function(items) {
         that.updateStats()
+        
       });
   }
   
@@ -78,20 +84,39 @@ export default class ToDoController {
     for(var i=0 ; i<this.items.length; i++)
     {
       
+      if( this.items[i].owner == this.LoginService.name )
+        this.yourTask++;  
+      
+      if( this.buttonText == "Your tasks" && this.items[i].owner != this.LoginService.name )
+        continue;
+        
       if( this.items[i].status == 'done' )
         this.doneTask++;
       
       if( this.items[i].status == 'active' )
         this.activeTask++;
 
-      if( this.items[i].owner == this.LoginService.name )
-        this.yourTask++;     
+   
       
     }
   }
   
-  getPrcnt(number){
-      return (100 * number / this.items.length)+"%";
+  getPrcnt(number, allTasks){
+      return (100 * number / allTasks)+"%";
+  }
+  
+  changeStats(){
+    if( this.buttonText == "All Tasks"){
+      this.buttonText = "Your tasks";
+      this.statisLength = this.yourTask;
+    }
+    else{
+      this.buttonText = "All Tasks";
+      this.statisLength = this.items.length;
+    }
+    
+    this.updateStats();
+    
   }
   
 }

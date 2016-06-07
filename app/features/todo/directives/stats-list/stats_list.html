@@ -1,20 +1,27 @@
 <div class="row">
+<div class="col-md-4 col-md-offset-8 text-right">
+    <label>Statistic to:   </label>
+    <button class="btn btn-default" ng-click="todo.changeStats()">{{todo.buttonText}}</button>
+</div></div> 
+<div class="row">
     <div class="col-md-4">
         <label>Your task in system</label><span class="pull-right strong">{{todo.yourTask}}/{{todo.items.length}}</span>
         <div class="progress progress-success">
-            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.yourTask)}};"></div>
+            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.yourTask, todo.items.length)}};"></div>
         </div>
     </div>
     <div class="col-md-4">
-        <label>Task active</label><span class="pull-right strong">{{todo.activeTask}}/{{todo.items.length}}</span>
+        <label>Task active</label><span class="pull-right strong">{{todo.activeTask}}/{{todo.statisLength}}</span>
         <div class="progress progress-success">
-            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.activeTask)}};"></div>
+            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.activeTask, todo.statisLength)}};"></div>
         </div>
     </div>
     <div class="col-md-4">
-        <label>Task done</label><span class="pull-right strong">{{todo.doneTask}}/{{todo.items.length}}</span>
+        <label>Task done</label><span class="pull-right strong">{{todo.doneTask}}/{{todo.statisLength}}</span>
         <div class="progress progress-success">
-            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.doneTask)}};"></div>
+            <div class="progress-bar" style="width: {{todo.getPrcnt(todo.doneTask, todo.statisLength)}};"></div>
         </div>
     </div>
 </div>
+ 
+  
